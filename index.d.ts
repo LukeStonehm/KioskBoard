@@ -166,6 +166,12 @@ declare namespace KioskBoard {
      * @defaultValue `true`
      */
     keysEnterCanClose?: boolean;
+
+    /**
+     * @property {boolean} - Optional, The keyboard can be closed and removed by clicking the backdrop. Prevented when `false`.
+     * @defaultValue `true`
+     */
+    dismissOnBackdropClick?: boolean
   }
 
   /**
