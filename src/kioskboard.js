@@ -850,11 +850,10 @@
                   && e.target !== theInput
                   && !kioskBoardEventTargetIsElementOrChilds(e, keyboardElm)
                   && !e.target.classList.contains('kioskboard-body-padding')
+                  && opt.dismissOnBackdropClick
                 ) {
-                  if (opt.dismissOnBackdropClick) {
-                    removeKeyboard();
-                    window.document.removeEventListener('click', docClickListener);
-                  }
+                  removeKeyboard();
+                  window.document.removeEventListener('click', docClickListener);
                 }
                 // check event target to remove keyboard: end
 
