@@ -68,6 +68,7 @@
     keysEnterText: 'Enter',
     keysEnterCallback: undefined,
     keysEnterCanClose: true,
+    dismissOnBackdropClick: true,
   };
   var kioskBoardCachedKeys;
   var kioskBoardNewOptions;
@@ -850,8 +851,10 @@
                   && !kioskBoardEventTargetIsElementOrChilds(e, keyboardElm)
                   && !e.target.classList.contains('kioskboard-body-padding')
                 ) {
-                  removeKeyboard();
-                  window.document.removeEventListener('click', docClickListener);
+                  if (opt.dismissOnBackdropClick) {
+                    removeKeyboard();
+                    window.document.removeEventListener('click', docClickListener);
+                  }
                 }
                 // check event target to remove keyboard: end
 
