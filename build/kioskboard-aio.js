@@ -949,6 +949,23 @@
       }
       // Step 3: Select the element(s): end
     },
+    // Close
+    close: function () {
+      var kioskBoardVirtualKeyboardId = 'KioskBoard-VirtualKeyboard';
+      var keyboardElm = window.document.getElementById(kioskBoardVirtualKeyboardId);
+      if (keyboardElm) {
+        keyboardElm.classList.add('slide-remove');
+
+        // remove after the animation has been ended
+        var removeTimeout = setTimeout(function () {
+          if (keyboardElm.parentNode !== null) {
+            keyboardElm.parentNode.removeChild(keyboardElm); // remove keyboard
+            window.document.body.classList.remove('kioskboard-body-padding'); // remove body padding class
+          }
+          clearTimeout(removeTimeout);
+        }, 360);
+      }
+    },
   };
 
   return KioskBoard;

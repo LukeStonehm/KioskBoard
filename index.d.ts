@@ -194,6 +194,12 @@ declare namespace KioskBoard {
     initOptions: IKioskBoardOptions,
   ): void;
 
+  /**
+   * This method can be used to close and remove the keyboard.
+   * @function close
+   * @memberof KioskBoard
+   */
+  function close(): void;
 }
 
 export = KioskBoard;
