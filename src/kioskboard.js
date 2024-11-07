@@ -645,8 +645,11 @@
                     // update the selectionStart
                     theInputSelIndex = input.selectionStart || (input.value || '').length;
 
+                    var arr = Array.from(input.value);
+                    arr.splice(theInputSelIndex, 0, keyValArr[keyValIndex]);
+
                     // update input value
-                    input.value = input.value.splice(theInputSelIndex, 0, keyValArr[keyValIndex]);
+                    input.value = arr.join('');
 
                     // set next selection index
                     if (input.type !== 'number') {
@@ -698,7 +701,9 @@
 
                 // remove value by index
                 // update input value
-                input.value = input.value.splice((theInputSelIndex - 1), 1);
+                var arr = Array.from(input.value);
+                arr.splice((theInputSelIndex - 1), 1);
+                input.value = arr.join('');
 
                 // set next selection index
                 if (input.type !== 'number') {
