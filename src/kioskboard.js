@@ -266,6 +266,7 @@
 
   // KioskBoard: begin
   var KioskBoard = {
+    theInputValArray: [],
     // Initialize
     init: function (initOptions) {
       initOptions = typeof initOptions === 'object' && Object.keys(initOptions).length > 0 ? initOptions : {};
@@ -362,7 +363,7 @@
           // input element variables: begin
           var theInput = e.currentTarget;
           var theInputSelIndex = 0;
-          var theInputValArray = [];
+          KioskBoard.theInputValArray = [];
           var keyboardTypeArray = [kioskBoardTypes.All, kioskBoardTypes.Keyboard, kioskBoardTypes.Numpad];
           var theInputKeyboardType = (theInput.dataset.kioskboardType || '').toLocaleLowerCase('en');
           var keyboardType = keyboardTypeArray.indexOf(theInputKeyboardType) > -1 ? theInputKeyboardType : kioskBoardTypes.All;
@@ -384,7 +385,7 @@
           theInputSelIndex = theInput.selectionStart || theInputValLen;
 
           // update theInputValArray on focus
-          theInputValArray = theInput.value.split('');
+          KioskBoard.theInputValArray = theInput.value.split('');
 
           // row keys element
           var keysRowElements = '';
@@ -584,7 +585,7 @@
             var allowRealKeyboard = opt.allowRealKeyboard === true;
             if (allowRealKeyboard) {
               // update theInputValArray on keypress
-              theInputValArray = e.currentTarget.value.split('');
+              KioskBoard.theInputValArray = e.currentTarget.value.split('');
             }
             // else: stop
             else {
@@ -650,10 +651,10 @@
                     theInputSelIndex = input.selectionStart || (input.value || '').length;
 
                     // add value by index
-                    theInputValArray.splice(theInputSelIndex, 0, keyValArr[keyValIndex]);
+                    KioskBoard.theInputValArray.splice(theInputSelIndex, 0, keyValArr[keyValIndex]);
 
                     // update input value
-                    input.value = theInputValArray.join('');
+                    input.value = KioskBoard.theInputValArray.join('');
 
                     // set next selection index
                     if (input.type !== 'number') {
@@ -704,10 +705,10 @@
                 input.focus();
 
                 // remove value by index
-                theInputValArray.splice((theInputSelIndex - 1), 1);
+                KioskBoard.theInputValArray.splice((theInputSelIndex - 1), 1);
 
                 // update input value
-                input.value = theInputValArray.join('');
+                input.value = KioskBoard.theInputValArray.join('');
 
                 // set next selection index
                 if (input.type !== 'number') {
