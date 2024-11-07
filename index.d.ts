@@ -200,6 +200,8 @@ declare namespace KioskBoard {
    * @memberof KioskBoard
    */
   function close(): void;
+
+  let theInputValArray: string[];
 }
 
 export = KioskBoard;
